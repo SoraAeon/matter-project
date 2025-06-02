@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ concept.title }}</h2>
+  <p>{{ concept.description }}</p>
+
+  <hr>
+  <form method="post">
+    {% csrf_token %}
+    <label for="question">この概念に質問する:</label><br>
+    <textarea name="question" rows="3" cols="60" placeholder="例：あなたの価値観は？など"></textarea><br><br>
+    <button type="submit">質問する</button>
+  </form>
+
+  {% if response %}
+    <hr>
+    <h3>🧠 概念からの回答:</h3>
+    <div style="white-space: pre-line; background-color: #f0f0f0; padding: 1em; border-radius: 8px;">
+      {{ response }}
+    </div>
+  {% endif %}
+
+  <h3>過去のやり取り</h3>
+  <ul>
+    {% for chat in chats %}
+      <li>
+        <strong>Q:</strong> {{ chat.question }}<br>
+        <strong>A:</strong> {{ chat.answer }}<br>
+        <em>{{ chat.created_at|date:"Y/m/d H:i" }}</em>
+      </li>
+    {% empty %}
+      <li>まだやり取りがありません。</li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'list_concepts' %}">← 概念一覧に戻る</a></p>
+{% endblock %}

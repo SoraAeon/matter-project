@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>この概念を削除してもよいですか？</h2>
+  <p><strong>{{ concept.title }}</strong></p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">削除する</button>
+  </form>
+  <a href="{% url 'detail_concept' concept.id %}">キャンセル</a>
+{% endblock %}

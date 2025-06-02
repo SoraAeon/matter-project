@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>あなたの概念一覧</h2>
+  <ul>
+    <ul>
+      {% for concept in concepts %}
+        <li>
+          <strong>{{ concept.title }}</strong> - {{ concept.description }}
+          [<a href="{% url 'detail_concept' concept.id %}">GPTと会話する</a>]
+          [<a href="{% url 'edit_concept' concept.id %}">編集</a>]
+          [<a href="{% url 'delete_concept' concept.id %}">削除</a>]
+        </li>
+      {% empty %}
+        <li>まだ概念がありません。</li>
+      {% endfor %}
+    </ul>
+
+    <a href="{% url 'create_concept' %}">＋ 新しい概念を追加</a>
+{% endblock %}

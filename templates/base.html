@@ -1,0 +1,29 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Matter{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'list_concepts' %}">Matter</a></h1>
+        {% if user.is_authenticated %}
+            <p>ようこそ、{{ user.username }}さん！</p>
+            <a href="{% url 'logout' %}">ログアウト</a>
+        {% else %}
+            <a href="{% url 'login' %}">ログイン</a>
+        {% endif %}
+    </header>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>© 2025 Matter Project</p>
+    </footer>
+</body>
+</html>
