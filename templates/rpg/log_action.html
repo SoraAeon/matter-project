@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>📝 行動を記録して経験値を得よう！</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">記録する</button>
+  </form>
+  <a href="{% url 'status_view' %}">← ステータスに戻る</a>
+{% endblock %}

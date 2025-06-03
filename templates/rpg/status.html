@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>🧙 あなたのステータス</h2>
+  <ul>
+    <li>レベル: {{ status.level }}</li>
+    <li>経験値: {{ status.exp }}</li>
+    <li>Emotion（感情）: {{ status.emotion }}</li>
+    <li>Self-control（自己制御）: {{ status.self_control }}</li>
+    <li>Social（社会的関係）: {{ status.social }}</li>
+    <li>Well-being（健康）: {{ status.well_being }}</li>
+    <li>Economy（経済）: {{ status.economy }}</li>
+    <li>Knowledge（知識）: {{ status.knowledge }}</li>
+    <li>Physical（身体）: {{ status.physical }}</li>
+  </ul>
+  <a href="{% url 'list_concepts' %}">← 概念一覧に戻る</a>
+{% endblock %}
